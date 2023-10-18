@@ -17,6 +17,7 @@ class Transaction extends Model
         'quantity',
         'total',
         'status',
+        'payment_type',
         'payment_url'
     ];
 

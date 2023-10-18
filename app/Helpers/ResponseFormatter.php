@@ -13,11 +13,14 @@ class ResponseFormatter
      * @var array
      */
     protected static $response = [
-        'meta' => [
-            'code' => 200,
-            'status' => 'success',
-            'message' => null,
-        ],
+        // 'meta' => [
+        //     'code' => 200,
+        //     'status' => 'success',
+        //     'message' => null,
+        // ],
+        'code' => 200,
+        'status' => 'success',
+        'message' => null,
         'data' => null,
     ];
 
@@ -26,10 +29,12 @@ class ResponseFormatter
      */
     public static function success($data = null, $message = null)
     {
-        self::$response['meta']['message'] = $message;
+        // self::$response['meta']['message'] = $message;
+        self::$response['message'] = $message;
         self::$response['data'] = $data;
 
-        return response()->json(self::$response, self::$response['meta']['code']);
+        // return response()->json(self::$response, self::$response['meta']['code']);
+        return response()->json(self::$response, self::$response['code']);
     }
 
     /**
@@ -37,11 +42,15 @@ class ResponseFormatter
      */
     public static function error($data = null, $message = null, $code = 400)
     {
-        self::$response['meta']['status'] = 'error';
-        self::$response['meta']['code'] = $code;
-        self::$response['meta']['message'] = $message;
+        // self::$response['meta']['status'] = 'error';
+        self::$response['status'] = 'error';
+        // self::$response['meta']['code'] = $code;
+        self::$response['code'] = $code;
+        // self::$response['meta']['message'] = $message;
+        self::$response['message'] = $message;
         self::$response['data'] = $data;
 
-        return response()->json(self::$response, self::$response['meta']['code']);
+        // return response()->json(self::$response, self::$response['meta']['code']);
+        return response()->json(self::$response, self::$response['code']);
     }
 }
