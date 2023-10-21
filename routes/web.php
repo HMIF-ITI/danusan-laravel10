@@ -32,6 +32,7 @@ Route::prefix('dashboard')
 
         Route::get('transaction/{id}/status/{status}', [TransactionController::class, 'changeStatus'])->name('transactions.changeStatus');
         Route::resource('transactions', TransactionController::class);
+        Route::get('/transaction-export', [TransactionController::class, 'export']);
     });
 
 
@@ -41,6 +42,9 @@ Route::prefix('dashboard')
 Route::get('midtrans/success', [MidtransController::class, 'success']);
 Route::get('midtrans/unfinish', [MidtransController::class, 'unfinish']);
 Route::get('midtrans/error', [MidtransController::class, 'error']);
+
+
+// EXPORT EXCEL
 
 Route::middleware([
     'auth:sanctum',

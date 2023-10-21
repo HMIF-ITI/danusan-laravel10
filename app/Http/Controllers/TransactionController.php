@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\TransactionExport;
 use App\Models\Transaction;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class TransactionController extends Controller
 {
@@ -79,5 +82,11 @@ class TransactionController extends Controller
         $transaction->save();
 
         return redirect()->route('transactions.show', $id);
+    }
+
+    public function export()
+    {
+        // return Excel::download(new TransactionExport, 'transaction-' . Carbon::now()->timestamp . '.xlsx');
+        return (new TransactionExport)->download('transaction-' . Carbon::now()->timestamp . '.xlsx');
     }
 }

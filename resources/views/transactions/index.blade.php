@@ -7,6 +7,14 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+
+            <div class="mb-10">
+                <a style="background-color: green;" href="/dashboard/transaction-export"
+                    class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+                    Export Excel
+                </a>
+            </div>
+            <br>
             <div class="bg-white">
                 <table class="table-auto w-full">
                     <thead>
@@ -63,9 +71,9 @@
                     </tbody>
                 </table>
             </div>
-            <div class="text-center mt-5">
+            {{-- <div class="text-center mt-5">
                 {{ $transaction->links() }}
-            </div>
+            </div> --}}
         </div>
     </div>
 </x-app-layout>
