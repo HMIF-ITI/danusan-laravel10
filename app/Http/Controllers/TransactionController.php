@@ -43,8 +43,9 @@ class TransactionController extends Controller
      */
     public function show(Transaction $transaction)
     {
+        // dd($transaction);
         return view('transactions.detail', [
-            'item' => $transaction
+            'transaction' => $transaction
         ]);
     }
 
