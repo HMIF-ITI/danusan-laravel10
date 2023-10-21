@@ -1,4 +1,4 @@
-<div class="p-6 lg:p-8 bg-white border-b border-gray-200">
+{{-- <div class="p-6 lg:p-8 bg-white border-b border-gray-200">
     <x-application-logo class="block h-12 w-auto" />
 
     <h1 class="mt-8 text-2xl font-medium text-gray-900">
@@ -92,5 +92,37 @@
         <p class="mt-4 text-gray-500 text-sm leading-relaxed">
             Authentication and registration views are included with Laravel Jetstream, as well as support for user email verification and resetting forgotten passwords. So, you're free to get started with what matters most: building your application.
         </p>
+    </div>
+</div> --}}
+
+
+
+<div class="bg-gray-200 bg-opacity-25 grid grid-cols-1 md:grid-cols-2">
+    <div class="p-6">
+        <div class="flex items-center">
+            <div class="ml-4 text-lg text-gray-600 leading-7 font-semibold"><a href="/dashboard/produk">Produk</a></div>
+        </div>
+    </div>
+
+    <div class="p-6 border-t border-gray-200 md:border-t-0 md:border-l">
+        <div class="flex items-center">
+            <div class="ml-4 text-lg text-gray-600 leading-7 font-semibold"><a
+                    href="dashboard/transactions">Transaction</a></div>
+        </div>
+
+    </div>
+
+    <div class="p-6 border-t border-gray-200">
+        <div class="flex items-center">
+            <div class="ml-4 text-lg text-gray-600 leading-7 font-semibold"><a href="/dashboard/users">Users</a></div>
+        </div>
+    </div>
+
+    <div class="p-6 border-t border-gray-200 md:border-l">
+        <div class="flex items-center">
+            <div class="ml-4 text-lg text-gray-600 leading-7 font-semibold"><a href="/dashboard/profile">Profile</a>
+            </div>
+        </div>
+
     </div>
 </div>
