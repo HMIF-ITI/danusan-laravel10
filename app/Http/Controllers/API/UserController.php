@@ -40,7 +40,7 @@ class UserController extends Controller
             if (!Auth::attempt($credentials)) {
                 return ResponseFormatter::error([
                     'message' => 'Unauthorized'
-                ], 'Authentication Failed', 500);
+                ], 'Authentication Failed', 401);
             }
 
             // var_dump($credentials);

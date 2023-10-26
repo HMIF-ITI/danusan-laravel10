@@ -59,7 +59,7 @@ class TransactionController extends Controller
         return ResponseFormatter::success($transaction, 'Transaksi berhasil diperbarui');
     }
 
-    public function checkout(Request $request)
+    public function checkoutWithMidtrans(Request $request)
     {
         $request->validate([
             'food_id' => 'required|exists:produks,id',
@@ -113,5 +113,37 @@ class TransactionController extends Controller
         } catch (Exception $e) {
             return ResponseFormatter::error($e->getMessage(), 'Transaksi Gagal');
         }
+    }
+
+    public function checkoutWithoutMidtrans(Request $request)
+    {
+        $request->validate([
+            'food_id' => 'required|exists:produks,id',
+            'user_id' => 'required|exists:users,id',
+            'quantity' => 'required',
+            'total' => 'required',
+            'payment_type' => 'required',
+            'status' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Add image validation rules
+        ]);
+
+        // Handle the image upload
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('uploads'), $imageName); // Save the image to the 'uploads' directory
+        }
+
+        $transaction = Transaction::create([
+            'food_id' => $request->food_id,
+            'user_id' => $request->user_id,
+            'quantity' => $request->quantity,
+            'total' => $request->total,
+            'status' => $request->status,
+            'payment_type' => $request->payment_type,
+            'image' => $imageName, // Save the image filename in the database
+        ]);
+
+        return response()->json(['message' => 'Transaction created successfully', 'transaction' => $transaction], 201);
     }
 }

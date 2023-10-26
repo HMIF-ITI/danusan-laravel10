@@ -80,13 +80,13 @@
         <h3 class="mb-3">DATA Transaksi</h3>
         <div class="row d-flex align-items-center">
             <div class="col-md-4">
-                <img src="{{ $transaction->food->picturePath }}" alt="" class="w-100 rounded mb-4">
+                <img src="{{ $transaction->image }}" alt="" class="w-100 rounded mb-4">
             </div>
             <div class="col-md-8">
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th scope="col">id</th>
+                            {{-- <th scope="col">id</th> --}}
                             <th scope="col">produk</th>
                             <th scope="col">qty</th>
                             <th scope="col">total</th>
@@ -97,7 +97,7 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>{{ $transaction->id }}</td>
+                            {{-- <td>{{ $transaction->id }}</td> --}}
                             <td>{{ $transaction->food->name }}</td>
                             <td>{{ $transaction->quantity }}</td>
                             <td>{{ $transaction->total }}</td>
@@ -119,6 +119,7 @@
         <table class="table table-bordered">
             <thead>
                 <tr>
+                    <th scope="col">foto produk</th>
                     <th scope="col">username</th>
                     <th scope="col">phoneNumber</th>
                     <th scope="col">nrp</th>
@@ -127,6 +128,9 @@
             </thead>
             <tbody>
                 <tr>
+                    <td>
+                        <img src="{{ $transaction->food->picturePath }}" alt="" class="w-100 rounded mb-4">
+                    </td>
                     <td>{{ $transaction->user->name }}</td>
                     <td>{{ $transaction->user->phoneNumber }}</td>
                     <td>{{ $transaction->user->nrp }}</td>

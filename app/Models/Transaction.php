@@ -18,7 +18,8 @@ class Transaction extends Model
         'total',
         'status',
         'payment_type',
-        'payment_url'
+        'payment_url',
+        'image'
     ];
 
     public function user()
