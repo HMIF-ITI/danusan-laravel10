@@ -9,6 +9,7 @@ use App\Models\Transaction;
 use Illuminate\Http\Request;
 use App\Helpers\ResponseFormatter;
 use App\Http\Controllers\Controller;
+use App\Models\Produk;
 use Illuminate\Support\Facades\Auth;
 
 class TransactionController extends Controller
@@ -118,13 +119,15 @@ class TransactionController extends Controller
     public function checkoutWithoutMidtrans(Request $request)
     {
         $request->validate([
+
             'food_id' => 'required|exists:produks,id',
             'user_id' => 'required|exists:users,id',
             'quantity' => 'required',
             'total' => 'required',
             'payment_type' => 'required',
             'status' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Add image validation rules
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'payment_url' => 'required'
         ]);
 
         // Handle the image upload
@@ -134,6 +137,7 @@ class TransactionController extends Controller
             $image->move(public_path('uploads'), $imageName); // Save the image to the 'uploads' directory
         }
 
+        // Create the transaction
         $transaction = Transaction::create([
             'food_id' => $request->food_id,
             'user_id' => $request->user_id,
@@ -143,6 +147,14 @@ class TransactionController extends Controller
             'payment_type' => $request->payment_type,
             'image' => $imageName, // Save the image filename in the database
         ]);
+
+        // Decrease the stock of the food item by 1
+        $food = Produk::find($request->food_id);
+
+        if ($food) {
+            $food->stok = max(0, $food->stok - 1); // Ensure stock doesn't go below 0
+            $food->save();
+        }
 
         return response()->json(['message' => 'Transaction created successfully', 'transaction' => $transaction], 201);
     }

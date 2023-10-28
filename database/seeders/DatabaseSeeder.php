@@ -28,7 +28,7 @@ class DatabaseSeeder extends Seeder
                 'email' => 'admin@gmail.com',
                 'nrp' => '11500000',
                 'password' => Hash::make('HMIF2023'),
-                'roles' => 'ADMIN'
+                // 'roles' => 'ADMIN'
 
             ],
             [
@@ -36,7 +36,7 @@ class DatabaseSeeder extends Seeder
                 'email' => 'testing@gmail.com',
                 'nrp' => '11500000',
                 'password' => Hash::make('HMIF2023'),
-                'roles' => 'USER'
+                // 'roles' => 'USER'
             ]
         ]);
 
